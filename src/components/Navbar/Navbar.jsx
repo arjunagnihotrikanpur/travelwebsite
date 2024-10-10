@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FaSearch, FaUser, FaHeart, FaBars } from "react-icons/fa"; 
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [navbar, setNavbar] = useState(false);
-
 
   const changeBackground = () => {
     if (window.scrollY >= 80) {
@@ -14,6 +14,10 @@ const Navbar = () => {
     }
   };
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
     return () => window.removeEventListener("scroll", changeBackground);
@@ -21,101 +25,110 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 px-16 ${
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         navbar ? "bg-black" : "bg-transparent"
-      }`}
+      } text-xl`}
     >
-      <div className="flex justify-between items-center p-4 w-full mx-auto ">
-        {/* Logo */}
-        <div className="text-white text-2xl font-bold">
+      <div className="container mx-auto flex justify-between items-center p-4">
+        {/* Left - Logo */}
+        <div className="text-3xl font-bold text-white pixel-font hover:text-cyan-900 transition duration-300 ease-out transform hover:scale-110">
           <Link to="/">Incredible US</Link>
         </div>
 
-        {/* Menu */}
-        <div className="hidden md:flex items-center space-x-6 text-white">
-          {/* Dropdown for Destinations */}
-          <div className="relative group">
-            <button className="hover:text-red-500">Destinations</button>
-            <div className="absolute hidden group-hover:block bg-white text-black mt-2 rounded shadow-lg p-2">
+        {/* Center - Menu Links */}
+        <ul className="hidden md:flex space-x-6 text-white text-center">
+          {["About", "Destination", "Contact"].map((item, idx) => (
+            <li key={idx}>
               <Link
-                to="/north-india"
-                className="block px-4 py-2 hover:bg-gray-200"
+                to={`/${item.toLowerCase()}`}
+                className="relative group hover:text-pink-500 transition-all duration-300"
               >
-                North USA
+                {item}
+                {/* <span className="absolute left-0 bottom-[-5px] w-full h-[2px] bg-white group-hover:animate-bounce"></span> */}
               </Link>
-              <Link
-                to="/south-india"
-                className="block px-4 py-2 hover:bg-gray-200"
-              >
-                South USA
-              </Link>
-              <Link
-                to="/east-india"
-                className="block px-4 py-2 hover:bg-gray-200"
-              >
-                East USA
-              </Link>
-              <Link
-                to="/west-india"
-                className="block px-4 py-2 hover:bg-gray-200"
-              >
-                West USA
-              </Link>
-            </div>
-          </div>
+            </li>
+          ))}
+        </ul>
 
-          {/* Dropdown for Experiences */}
-          <div className="relative group">
-            <button className="hover:text-red-500">Experiences</button>
-            <div className="absolute hidden group-hover:block bg-white text-black mt-2 rounded shadow-lg p-2">
-              <Link
-                to="/heritage"
-                className="block px-4 py-2 hover:bg-gray-200"
-              >
-                Heritage
-              </Link>
-              <Link
-                to="/adventure"
-                className="block px-4 py-2 hover:bg-gray-200"
-              >
-                Adventure
-              </Link>
-              <Link to="/culture" className="block px-4 py-2 hover:bg-gray-200">
-                Culture
-              </Link>
-            </div>
-          </div>
-
-          {/* Dropdown for Plan your trip */}
-          <div className="relative group">
-            <button className="hover:text-red-500">Plan your trip</button>
-            <div className="absolute hidden group-hover:block bg-white text-black mt-2 rounded shadow-lg p-2">
-              <Link
-                to="/accommodations"
-                className="block px-4 py-2 hover:bg-gray-200"
-              >
-                Accommodations
-              </Link>
-              <Link
-                to="/transportation"
-                className="block px-4 py-2 hover:bg-gray-200"
-              >
-                Transportation
-              </Link>
-              <Link to="/tours" className="block px-4 py-2 hover:bg-gray-200">
-                Tours
-              </Link>
-            </div>
-          </div>
+        {/* Right - Search Icon */}
+        <div className="flex space-x-4 text-white ">
+          <FaSearch
+            size={24}
+            className="cursor-pointer hover:text-gray-400 hidden"
+          />
         </div>
 
-        {/* Icons */}
-        <div className="flex items-center space-x-4 text-white">
-          <FaSearch className="cursor-pointer hover:text-gray-400" />
-          <FaUser className="cursor-pointer hover:text-gray-400" />
-          <FaHeart className="cursor-pointer hover:text-gray-400" />
-          <FaBars className="cursor-pointer hover:text-gray-400 md:hidden" />
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button
+            onClick={toggleMenu}
+            className="text-white hover:text-pink-500 transition-all duration-300 focus:outline-none"
+          >
+            {isOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8 animate-spin"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <div className="">
+                <div className="w-6 h-1 bg-white my-1 transition duration-300 ease-in-out transform-gpu origin-center" />
+                <div className="w-6 h-1 bg-white my-1 transition duration-300 ease-in-out transform-gpu origin-center" />
+                <div className="w-6 h-1 bg-white my-1 transition duration-300 ease-in-out transform-gpu origin-center" />
+              </div>
+            )}
+          </button>
         </div>
+      </div>
+
+      {/* Mobile Menu Links */}
+      <div
+        className={`fixed top-0 left-0 w-full h-full bg-[#d9f99d] border-t-4 border-black p-8 transform ${
+          isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+        } transition-transform duration-500 ease-in-out z-50`}
+      >
+        <div className="flex justify-end mb-6">
+          <button
+            onClick={toggleMenu}
+            className="text-black hover:text-pink-500 transition-all duration-300 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <ul className="space-y-6 text-center">
+          {["About", "Destination", "Contact"].map((item, idx) => (
+            <li key={idx}>
+              <Link
+                to={`/${item.toLowerCase()}`}
+                className="text-3xl font-bold text-black pixel-font hover:text-pink-500 transition-all duration-300 block"
+              >
+                {item}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );
