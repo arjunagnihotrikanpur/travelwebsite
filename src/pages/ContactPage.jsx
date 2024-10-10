@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import contactImage from "../assets/images/contactImage.jpg"; // Update this path to your image
+import { Helmet } from "react-helmet";
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
@@ -100,6 +101,13 @@ const ContactInfo = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <Helmet>
+        <title>Contact - Travel Website</title>
+        <meta
+          name="description"
+          content="This is the home page of travel website - webwise digital - sample project."
+        />
+      </Helmet>
       <h2 className="text-2xl font-bold mb-6">Contact Us</h2>
       <p className="mb-4">
         <strong>Phone:</strong> +123 456 7890
@@ -174,7 +182,7 @@ const MapSection = () => {
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-8 space-y-12">
+    <div className="min-h-screen bg-gray-900 text-white p-8 space-y-12 pt-32">
       <motion.h1
         className="text-5xl font-bold text-center mb-12"
         initial={{ opacity: 0 }}

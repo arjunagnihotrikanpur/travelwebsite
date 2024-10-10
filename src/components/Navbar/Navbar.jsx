@@ -37,7 +37,7 @@ const Navbar = () => {
 
         {/* Center - Menu Links */}
         <ul className="hidden md:flex space-x-6 text-white text-center">
-          {["About", "Destination", "Contact"].map((item, idx) => (
+          {["About", "Destinations", "Contact"].map((item, idx) => (
             <li key={idx}>
               <Link
                 to={`/${item.toLowerCase()}`}

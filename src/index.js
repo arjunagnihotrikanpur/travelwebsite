@@ -7,7 +7,6 @@ import HomePage from "./pages/HomePage";
 import Layout from "./Layout";
 import ErrorPage from "./pages/ErrorPage";
 import AboutPage from "./pages/AboutPage";
-=======
 import DestinationsPage from "./pages/DestinationsPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import ContactPage from "./pages/ContactPage";
@@ -18,7 +17,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -27,8 +26,8 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutPage />,
-      }
-    {
+      },
+      {
         path: "/destinations",
         element: <DestinationsPage />,
       },
