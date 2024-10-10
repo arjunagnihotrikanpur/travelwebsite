@@ -4,10 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import videoOne from "../../assets/herovideos/1.mp4";
-import videoTwo from "../../assets/herovideos/2.mp4";
-import videoThree from "../../assets/herovideos/3.mp4";
-import videoFour from "../../assets/herovideos/4.mp4";
+import videoOne from "../../../assets/herovideos/1.mp4";
+import videoTwo from "../../../assets/herovideos/2.mp4";
+import videoThree from "../../../assets/herovideos/3.mp4";
+import videoFour from "../../../assets/herovideos/4.mp4";
 
 function CustomSlide({ videoSrc }) {
   return (
@@ -31,7 +31,7 @@ function CustomSlides() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false, // Disable default arrows
+    arrows: true, // Disable default arrows
     beforeChange: (oldIndex, newIndex) => setCurrentIndex(newIndex), // Update current index on slide change
   };
 
@@ -67,7 +67,7 @@ function CustomSlides() {
       </Slider>
 
       {/* Bottom-left Navbar for switching videos */}
-      <div className="absolute flex flex-row bottom-5 left-5 bg-black bg-opacity-70 text-white p-4 rounded">
+      <div className="absolute flex flex-row bottom-5 left-5 bg-black bg-opacity-0 text-white p-4 rounded">
         {slidesData.map((slide, index) => (
           <div
             key={index}
