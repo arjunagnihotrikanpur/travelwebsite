@@ -5,6 +5,11 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Layout from "./Layout";
+import DestinationsPage from "./pages/DestinationsPage";
+import TestimonialsPage from "./pages/TestimonialsPage";
+import ContactPage from "./pages/ContactPage";
+
+import DestinationDetails from "./components/destinations/DestinationDetails";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +19,22 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/destinations",
+        element: <DestinationsPage />,
+      },
+      {
+        path: "/destinations/:destinationName",
+        element: <DestinationDetails />,
+      },
+      {
+        path: "/testimonials",
+        element: <TestimonialsPage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage />,
       },
     ],
   },

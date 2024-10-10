@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import HeroSection from "../components/home/HeroSection/HeroSection";
 import MobileAppBanner from "../components/home/MobileAppBanner/MobileAppBanner";
+import Testimonials from "../components/home/Testimonials/Testimonials";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       </Helmet>
       <HeroSection />
       <MobileAppBanner />
+      <Testimonials />
     </>
   );
 };
